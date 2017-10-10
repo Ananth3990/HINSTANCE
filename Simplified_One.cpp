@@ -115,7 +115,7 @@ void MakeFullScreen(HWND hwnd)
 		hMonitor = MonitorFromWindow(hwnd, MONITORINFOF_PRIMARY);
 		mi = { sizeof(MONITORINFO) };
 
-		//Takes information in our case required is left,top,right and bottom about our monitor ands saves it in parameter mi 
+		//Takes information (in our case out of many info we need is left,top,right and bottom) about our monitor ands saves it in parameter mi 
 		isMonitorInfo = GetMonitorInfo(hMonitor, &mi);
 
 		if (isMonitorInfo == TRUE) //if above function goes well
@@ -126,7 +126,7 @@ void MakeFullScreen(HWND hwnd)
 			//Takes current style and removes WS_OVERLAPPEDWINDOW from its style
 			SetWindowLong(hwnd, GWL_STYLE, dwStyle&~WS_OVERLAPPEDWINDOW);
 
-			//Here we specify x,y width and height of our screen from monitor which is there in mi variable and tell that my window should be on top of all windows
+			//Here we specify x,y width and height of our screen from monitor which is there in mi variable and tell that my window should be on top of all windows and say my window to become fullscreen.
 			SetWindowPos(hwnd, HWND_TOP, mi.rcMonitor.left, mi.rcMonitor.top, mi.rcMonitor.right - mi.rcMonitor.left, mi.rcMonitor.bottom - mi.rcMonitor.top, SWP_NOZORDER | SWP_FRAMECHANGED);
 		}
 	}
